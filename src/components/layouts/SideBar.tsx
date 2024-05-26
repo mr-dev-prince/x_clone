@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { BsBellFill, BsHouseFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
@@ -38,7 +40,8 @@ const SideBar = () => {
               onClick={() => {}}
             />
           ))}
-          <SideBarItem onClick={()=>{}} icon={BiLogOut} label="Logout" />
+
+          <SideBarItem onClick={() => {}} icon={BiLogOut} label="Logout" />
           <SideBarTweetButton />
         </div>
       </div>

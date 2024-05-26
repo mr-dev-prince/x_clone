@@ -5,6 +5,8 @@ import React, { useCallback, useState } from "react";
 import Input from "../Input";
 import Modal from "../Modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import { signIn } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
@@ -26,7 +28,7 @@ const LoginModal = () => {
     try {
       setIsLoading(true);
 
-      // TODO: Log in logic
+      // login logic goes her
 
       loginModal.onClose();
     } catch (error) {

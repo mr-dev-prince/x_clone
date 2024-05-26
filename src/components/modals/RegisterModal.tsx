@@ -5,6 +5,7 @@ import React, { useCallback, useState } from "react";
 import Input from "../Input";
 import Modal from "../Modal";
 import useLoginModal from "@/hooks/useLoginModal";
+import toast from "react-hot-toast";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -12,7 +13,7 @@ const RegisterModal = () => {
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [username, setUserame] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -28,11 +29,13 @@ const RegisterModal = () => {
     try {
       setIsLoading(true);
 
-      // TODO: Register logic
+      // register logic goes here
+
 
       registerModal.onClose();
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong...!");
     } finally {
       setIsLoading(false);
     }
@@ -59,7 +62,7 @@ const RegisterModal = () => {
         value={username}
         placeholder="Username"
         disabled={isLoading}
-        onChange={(e) => setUserame(e.target.value)}
+        onChange={(e) => setUsername(e.target.value)}
       />
       <Input
         type="password"
@@ -73,7 +76,6 @@ const RegisterModal = () => {
 
   const footerContent = (
     <div className=" text-neutral-400 text-center mt-4">
-      {" "}
       <p>
         Already have an account ?{" "}
         <span
