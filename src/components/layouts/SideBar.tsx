@@ -7,8 +7,13 @@ import SideBarLogo from "./SideBarLogo";
 import SideBarItem from "./SideBarItem";
 import { BiLogOut } from "react-icons/bi";
 import SideBarTweetButton from "./SideBarTweetButton";
+import { signOut } from "next-auth/react";
+import useCurrentUser from "@/hooks/useCurrentUser";
+import toast from "react-hot-toast";
 
 const SideBar = () => {
+  const user = useCurrentUser((state) => state.user);
+
   const items = [
     {
       label: "Home",
@@ -26,6 +31,18 @@ const SideBar = () => {
       icon: FaUser,
     },
   ];
+
+  const handleLogOut = async () => {
+    try {
+      await signOut();
+      toast.success("Logged Out...!", {
+        position: "top-right",
+        duration: 2000,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="col-span-1 h-full pr-4 md:pr-6">
       <div className="flex flex-col items-end">
@@ -41,7 +58,14 @@ const SideBar = () => {
             />
           ))}
 
-          <SideBarItem onClick={() => {}} icon={BiLogOut} label="Logout" />
+          {user ? (
+            <SideBarItem
+              onClick={handleLogOut}
+              icon={BiLogOut}
+              label="Logout"
+            />
+          ) : null}
+
           <SideBarTweetButton />
         </div>
       </div>
